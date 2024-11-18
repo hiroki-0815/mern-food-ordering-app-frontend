@@ -11,9 +11,10 @@ import { useFormContext } from "react-hook-form";
 
 const DetailsSection = () => {
   const { control } = useFormContext();
+
   return (
     <div className="space-y-2">
-      <div className="">
+      <div>
         <h2 className="text-2xl font-bold">Details</h2>
         <FormDescription>
           Enter the details about your restaurant
@@ -22,11 +23,15 @@ const DetailsSection = () => {
       <FormField
         control={control}
         name="restaurantName"
-        render={(field) => (
+        render={({ field }) => (
           <FormItem>
             <FormLabel>Name</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" />
+              <Input
+                {...field}
+                value={field.value ?? ""}
+                className="bg-white"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -35,39 +40,52 @@ const DetailsSection = () => {
       <div className="flex gap-4">
         <FormField
           control={control}
-          name="City"
-          render={(field) => (
+          name="city"
+          render={({ field }) => (
             <FormItem className="flex-1">
               <FormLabel>City</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input
+                  {...field}
+                  value={field.value ?? ""}
+                  className="bg-white"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
-        />{" "}
+        />
         <FormField
           control={control}
           name="country"
-          render={(field) => (
+          render={({ field }) => (
             <FormItem className="flex-1">
               <FormLabel>Country</FormLabel>
               <FormControl>
-                <Input {...field} className="bg-white" />
+                <Input
+                  {...field}
+                  value={field.value ?? ""}
+                  className="bg-white"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
-        />{" "}
+        />
       </div>
       <FormField
         control={control}
         name="deliveryPrice"
-        render={(field) => (
+        render={({ field }) => (
           <FormItem className="max-w-[25%]">
             <FormLabel>Delivery Price($)</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" placeholder="1.5" />
+              <Input
+                {...field}
+                value={field.value ?? 0}
+                className="bg-white"
+                placeholder="1.5"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -76,11 +94,16 @@ const DetailsSection = () => {
       <FormField
         control={control}
         name="estimatedDeliveryTime"
-        render={(field) => (
+        render={({ field }) => (
           <FormItem className="max-w-[25%]">
             <FormLabel>Estimated Delivery Time(min)</FormLabel>
             <FormControl>
-              <Input {...field} className="bg-white" placeholder="30" />
+              <Input
+                {...field}
+                value={field.value ?? 0}
+                className="bg-white"
+                placeholder="30"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
