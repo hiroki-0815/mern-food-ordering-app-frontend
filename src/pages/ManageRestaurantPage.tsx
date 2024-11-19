@@ -1,13 +1,16 @@
 import {
   useCreateMyReataurant,
   useGetMyRestaurant,
+  useUpdateMyRestaurant,
 } from "@/api/MyRestaurantApi";
 import ManageRestaurantForm from "@/forms/manage-restaurant-form/ManageRestaurantForm";
 
 const ManageRestaurantPage = () => {
   const { currentRestaurant, isLoading: isGetLoading } = useGetMyRestaurant();
-  const { createRestaurant, isLoading: isUpdateLoading } =
+  const { createRestaurant, isLoading: isCreateLoading } =
     useCreateMyReataurant();
+  const { updateRestaurant, isLoading: isUpdateLoading } =
+    useUpdateMyRestaurant();
 
   if (isGetLoading) {
     return <span>...Loading</span>;
@@ -16,12 +19,13 @@ const ManageRestaurantPage = () => {
   if (!currentRestaurant) {
     return <span>Unable to load the restaurant</span>;
   }
+  const isEditing = !!currentRestaurant;
 
   return (
     <ManageRestaurantForm
       currentRestaurant={currentRestaurant}
-      onSave={createRestaurant}
-      isLoading={isUpdateLoading}
+      onSave={isEditing ? updateRestaurant : createRestaurant}
+      isLoading={isCreateLoading || isUpdateLoading}
     />
   );
 };
