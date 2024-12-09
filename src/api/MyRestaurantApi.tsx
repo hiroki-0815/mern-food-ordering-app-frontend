@@ -160,8 +160,8 @@ export const useUpdateOrderStatus = () => {
     const response = await fetch(
       `${API_BASE_URL}/api/my/restaurant/order/${updateStatusOrderRequest.orderId}/status`,
       {
+        method: "PATCH",
         headers: {
-          method: "PATCH",
           Authorization: `Bearer ${accessToken}`,
           "Content-Type": "application/json",
         },
