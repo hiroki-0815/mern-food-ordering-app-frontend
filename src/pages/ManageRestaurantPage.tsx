@@ -21,9 +21,25 @@ const ManageRestaurantPage = () => {
     return <span>...Loading</span>;
   }
 
-  if (!currentRestaurant) {
-    return <span>Unable to load the restaurant</span>;
+  // If no restaurant exists, allow user to create one
+  if (currentRestaurant === null) {
+    return (
+      <Tabs defaultValue="manage-restaurant">
+        <TabsList className="mb-4">
+          <TabsTrigger value="manage-restaurant">Manage Restaurant</TabsTrigger>
+        </TabsList>
+        <TabsContent value="manage-restaurant">
+          <ManageRestaurantForm
+            currentRestaurant={null}
+            onSave={createRestaurant}
+            isLoading={isCreateLoading}
+          />
+        </TabsContent>
+      </Tabs>
+    );
   }
+
+  // Existing restaurant flow
   const isEditing = !!currentRestaurant;
 
   return (
