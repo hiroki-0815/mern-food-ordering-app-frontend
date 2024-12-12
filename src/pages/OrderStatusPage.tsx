@@ -24,7 +24,7 @@ const OrderStatusPage = () => {
             <AspectRatio ratio={16 / 5}>
               <img
                 src={order.restaurant.imageUrl}
-                className="rounded-md object-cover"
+                className="rounded-md object-cover w-full h-full"
                 alt="restaurant image"
               />
             </AspectRatio>

@@ -21,7 +21,6 @@ const ManageRestaurantPage = () => {
     return <span>...Loading</span>;
   }
 
-  // If no restaurant exists, allow user to create one
   if (currentRestaurant === null) {
     return (
       <Tabs defaultValue="manage-restaurant">
@@ -39,7 +38,6 @@ const ManageRestaurantPage = () => {
     );
   }
 
-  // Existing restaurant flow
   const isEditing = !!currentRestaurant;
 
   return (
